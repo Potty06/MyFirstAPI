@@ -12,7 +12,7 @@
 	<artifactId>ApiMicSiTare</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ApiMicSiTare</name>
-	<description>Cel mai API mid si tare</description>
+	<description>Cel mai API mic si tare</description>
 
 	<properties>
 		<java.version>11</java.version>
