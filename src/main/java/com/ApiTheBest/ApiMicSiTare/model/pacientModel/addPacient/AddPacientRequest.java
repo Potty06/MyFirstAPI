@@ -63,4 +63,11 @@ public class AddPacientRequest {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "AddPacientRequest{" +
+                "pacient=" + pacient +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

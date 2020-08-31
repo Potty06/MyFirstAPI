@@ -85,11 +85,10 @@ public class AddPacientResponse {
 
     @Override
     public String toString() {
-        return "AddCustomerResponse{" +
+        return "AddPacientResponse{" +
                 "pacientId=" + pacientId +
                 ", responseDescription='" + responseDescription + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }
-
 }
