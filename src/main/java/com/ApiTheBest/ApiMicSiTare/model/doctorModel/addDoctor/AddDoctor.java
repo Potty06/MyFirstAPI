@@ -75,7 +75,7 @@ public class AddDoctor {
      */
     @JsonProperty("customerName")
     public String getCustomerName() {
-        return customerName;
+        return doctorName;
     }
 
     /**
@@ -83,7 +83,7 @@ public class AddDoctor {
      */
     @JsonProperty("customerName")
     public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+        this.doctorName = customerName;
     }
 
     /**
