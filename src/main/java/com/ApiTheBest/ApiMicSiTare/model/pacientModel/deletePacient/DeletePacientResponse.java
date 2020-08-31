@@ -14,18 +14,10 @@ import java.util.Map;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "pacientId",
         "responseDescription"
 })
 public class DeletePacientResponse {
 
-    /**
-     * The id of the new created pacient.
-     *
-     */
-    @JsonProperty("pacientId")
-    @JsonPropertyDescription(" The id of the new created pacient.")
-    private Integer pacientId;
     /**
      * Description of the status.
      *
@@ -35,24 +27,6 @@ public class DeletePacientResponse {
     private String responseDescription;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    /**
-     * The id of the new created pacient.
-     *
-     */
-    @JsonProperty("pacientId")
-    public Integer getPacientId() {
-        return pacientId;
-    }
-
-    /**
-     * The id of the new created customer.
-     *
-     */
-    @JsonProperty("customerId")
-    public void setPacientId(Integer pacientId) {
-        this.pacientId = pacientId;
-    }
 
     /**
      * Description of the status.
@@ -82,12 +56,10 @@ public class DeletePacientResponse {
         this.additionalProperties.put(name, value);
     }
 
-
     @Override
     public String toString() {
         return "DeletePacientResponse{" +
-                "pacientId=" + pacientId +
-                ", responseDescription='" + responseDescription + '\'' +
+                "responseDescription='" + responseDescription + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

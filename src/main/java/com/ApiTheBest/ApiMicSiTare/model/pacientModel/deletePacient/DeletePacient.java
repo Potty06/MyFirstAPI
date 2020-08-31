@@ -34,7 +34,7 @@ import javax.validation.constraints.*;
 public class DeletePacient {
 
     /**
-     * Doctor id.
+     * Pacient id.
      */
     @JsonProperty("pacientId")
     @JsonPropertyDescription(" The id of the pacient")

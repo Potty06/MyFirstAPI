@@ -1,4 +1,64 @@
 package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.addAppointment;
 
+
+import com.fasterxml.jackson.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * addAppointmentReq
+ * <p>
+ * Add a new Appointment to the DB.
+ *
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "appointment"
+})
+
 public class AddAppointmentRequest {
+
+    /**
+     * the appointment inserted into DB
+     *
+     */
+    @JsonProperty("appointment")
+    @JsonPropertyDescription(" the appointment inserted into DB")
+    @Valid
+    private AddAppointment appointment;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    /**
+     * the appointment inserted into DB
+     *
+     */
+    @JsonProperty("appointment")
+    public AddAppointment getAppointment() {
+        return appointment;
+    }
+
+    /**
+     * the appointment inserted into DB
+     *
+     */
+    @JsonProperty("appointment")
+    public void setAppointment(AddAppointment appointment) {
+        this.appointment = appointment;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
+
+
 }
