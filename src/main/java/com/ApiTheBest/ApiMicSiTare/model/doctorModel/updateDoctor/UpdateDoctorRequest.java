@@ -19,4 +19,39 @@ import javax.validation.Valid;
 })
 
 public class UpdateDoctorRequest {
+
+    @JsonProperty("doctor")
+    @JsonPropertyDescription(" the doctor updated into DB")
+    @Valid
+    private UpdateDoctor doctor;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    /**
+     * the doctor updated into DB
+     *
+     */
+    @JsonProperty("doctor")
+    public UpdateDoctor getDoctor() {
+        return doctor;
+    }
+
+    /**
+     * the doctor updated into DB
+     *
+     */
+    @JsonProperty("doctor")
+    public void setDoctor(UpdateDoctor doctor) {
+        this.doctor = doctor;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
 }
