@@ -57,7 +57,7 @@ public class AddDoctor {
     @JsonProperty("medicSpeciality")
     @JsonPropertyDescription(" Medic Speciality.")
     @NotNull
-// validare
+// validari de facut
     private String medicSpeciality;
 
 
