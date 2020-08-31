@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * updateCustomerRsp
+ * updateAppointmentRsp
  * <p>
  * response after updating a customer into DB.
  *
