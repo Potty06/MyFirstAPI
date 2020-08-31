@@ -20,10 +20,6 @@ import java.util.Map;
 @Setter
 @Data
 
-/**
- * the appointment inserted into DB
- *
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "appointmentId",
