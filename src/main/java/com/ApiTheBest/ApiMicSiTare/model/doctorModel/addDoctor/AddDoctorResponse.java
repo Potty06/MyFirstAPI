@@ -10,12 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-/**
- * addCustomerRsp
- * <p>
- * response after inserting a new customer structure into DB.
- *
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "doctorId",
@@ -23,10 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 
 public class AddDoctorResponse {
-    /**
-     * The id of the new created customer.
-     *
-     */
+
     @JsonProperty("doctorId")
     @JsonPropertyDescription(" The id of the new created doctor.")
     private Integer doctorId;

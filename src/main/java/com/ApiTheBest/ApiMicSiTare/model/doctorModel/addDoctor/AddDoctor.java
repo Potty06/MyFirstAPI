@@ -13,10 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.validation.constraints.*;
 
 
-/**
- * the customer inserted into DB
- *
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "doctorName",

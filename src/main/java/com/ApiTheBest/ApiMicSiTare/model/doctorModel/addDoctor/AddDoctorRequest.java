@@ -11,12 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.validation.Valid;
-/**
- * addCustomerReq
- * <p>
- * Add a new Customer to the DB.
- *
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "doctor"
@@ -24,10 +19,7 @@ import javax.validation.Valid;
 
 public class AddDoctorRequest {
 
-    /**
-     * the customer inserted into DB
-     *
-     */
+
     @JsonProperty("doctor")
     @JsonPropertyDescription(" the doctor inserted into DB")
     @Valid
