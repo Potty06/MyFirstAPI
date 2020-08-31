@@ -21,7 +21,7 @@ import javax.validation.Valid;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "customer"
+        "pacient"
 })
 public class UpdatePacientRequest {
 

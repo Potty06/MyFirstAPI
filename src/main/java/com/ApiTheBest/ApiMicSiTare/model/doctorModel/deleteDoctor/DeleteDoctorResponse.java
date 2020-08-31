@@ -13,18 +13,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "doctorId",
         "responseDescription"
 })
 
 public class DeleteDoctorResponse {
-    /**
-     * The id of the new created customer.
-     *
-     */
-    @JsonProperty("doctorId")
-    @JsonPropertyDescription(" The id of the new created doctor.")
-    private Integer doctorId;
     /**
      * Description of the status.
      *
@@ -34,24 +26,6 @@ public class DeleteDoctorResponse {
     private String responseDescription;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    /**
-     * The id of the new created doctor.
-     *
-     */
-    @JsonProperty("doctorId")
-    public Integer getDoctorId() {
-        return doctorId;
-    }
-
-    /**
-     * The id of the new created doctor.
-     *
-     */
-    @JsonProperty("doctorId")
-    public void setdoctorId(Integer doctorId) {
-        this.doctorId = doctorId;
-    }
 
     /**
      * Description of the status.
@@ -84,8 +58,7 @@ public class DeleteDoctorResponse {
     @Override
     public String toString() {
         return "DeleteDoctorResponse{" +
-                "doctorId=" + doctorId +
-                ", responseDescription='" + responseDescription + '\'' +
+                "responseDescription='" + responseDescription + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }
