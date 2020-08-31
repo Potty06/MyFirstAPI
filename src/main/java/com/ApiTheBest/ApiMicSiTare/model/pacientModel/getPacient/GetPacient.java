@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
     @Data
 
 /**
- * the customer inserted into DB
+ * the pacient inserted into DB
  *
  */
     @JsonInclude(JsonInclude.Include.NON_NULL)
