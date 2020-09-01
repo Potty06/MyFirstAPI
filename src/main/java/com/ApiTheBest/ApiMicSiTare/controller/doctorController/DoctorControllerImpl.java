@@ -25,7 +25,7 @@ import java.util.Optional;
 public class DoctorControllerImpl implements DoctorController{
 
     private static List<Doctor> doctors = new ArrayList<>();
-    private static Integer doctorIdValue  = 1;
+    private static Integer doctorIdValue  = 3;
 
     static {
         doctors.add(new Doctor(1, "Luiza", "0750883434", "blabla", "medic"));
@@ -98,7 +98,7 @@ public class DoctorControllerImpl implements DoctorController{
             //no customers found
             httpServletResponse.setStatus(404);
             GetDoctorResponse response = new GetDoctorResponse();
-            response.setResponseDescription("No entries founs");
+            response.setResponseDescription("No entries found");
             return response;
         }
         //if there are customers, send 200
@@ -144,7 +144,6 @@ public class DoctorControllerImpl implements DoctorController{
         doctor.setPhoneNo(addDoctor.getPhoneNo());
 
         doctors.add(doctor);
-
         //send response
         response.setStatus(HttpServletResponse.SC_CREATED);
         AddDoctorResponse addResponse = new AddDoctorResponse();

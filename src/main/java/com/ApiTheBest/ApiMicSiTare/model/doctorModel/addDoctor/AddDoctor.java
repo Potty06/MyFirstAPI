@@ -10,10 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.*;
 
 
-
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "doctorName",
@@ -27,8 +31,8 @@ public class AddDoctor {
      * Name of the doctor.
      */
     @JsonProperty("doctorName")
-    @JsonPropertyDescription(" Name of the customer.")
-    //@NotNull
+    @JsonPropertyDescription(" Name of the doctor.")
+    @NotNull
     @Size(min = 3, message = "Invalid name")
     private String doctorName;
     /**
@@ -62,54 +66,54 @@ public class AddDoctor {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * Name of the doctor.
-     */
-    @JsonProperty("doctorName")
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    /**
-     * Name of the doctor.
-     */
-    @JsonProperty("doctorName")
-    public void setDoctorName(String Name) {
-        this.doctorName = doctorName;
-    }
-//git
-
-    /**
-     * The phone number of the doctor.
-     */
-    @JsonProperty("phoneNo")
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    /**
-     * The phone number of the customer.
-     */
-    @JsonProperty("phoneNo")
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-    @JsonProperty("contract")
-    public String getContract() {
-        return contract;
-    }
-    @JsonProperty("contract")
-    public void setContract(String contract) {
-        this.contract = contract;
-    }
-    @JsonProperty("medicSpeciality")
-    public String getMedicSpeciality() {
-        return medicSpeciality;
-    }
-    @JsonProperty("medicSpeciality")
-    public void setMedicSpeciality(String medicSpeciality) {
-        this.medicSpeciality = medicSpeciality;
-    }
+//    /**
+//     * Name of the doctor.
+//     */
+//    @JsonProperty("doctorName")
+//    public String getDoctorName() {
+//        return doctorName;
+//    }
+//
+//    /**
+//     * Name of the doctor.
+//     */
+//    @JsonProperty("doctorName")
+//    public void setDoctorName(String Name) {
+//        this.doctorName = doctorName;
+//    }
+////git
+//
+//    /**
+//     * The phone number of the doctor.
+//     */
+//    @JsonProperty("phoneNo")
+//    public String getPhoneNo() {
+//        return phoneNo;
+//    }
+//
+//    /**
+//     * The phone number of the customer.
+//     */
+//    @JsonProperty("phoneNo")
+//    public void setPhoneNo(String phoneNo) {
+//        this.phoneNo = phoneNo;
+//    }
+//    @JsonProperty("contract")
+//    public String getContract() {
+//        return contract;
+//    }
+//    @JsonProperty("contract")
+//    public void setContract(String contract) {
+//        this.contract = contract;
+//    }
+//    @JsonProperty("medicSpeciality")
+//    public String getMedicSpeciality() {
+//        return medicSpeciality;
+//    }
+//    @JsonProperty("medicSpeciality")
+//    public void setMedicSpeciality(String medicSpeciality) {
+//        this.medicSpeciality = medicSpeciality;
+//    }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
