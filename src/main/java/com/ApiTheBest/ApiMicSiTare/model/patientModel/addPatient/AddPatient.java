@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.deletePacient;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +15,6 @@ import javax.validation.constraints.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Data
 
 /**
@@ -25,48 +23,42 @@ import javax.validation.constraints.*;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "pacientId",
-        "pacientName",
+        "patientName",
         "address",
         "email",
         "phoneNo"
 })
-public class DeletePacient {
+@Getter
+@Setter
+public class AddPatient {
 
     /**
-     * Pacient id.
+     * Name of the patient.
      */
-    @JsonProperty("pacientId")
-    @JsonPropertyDescription(" The id of the pacient")
-    private Integer pacientId;
-
-    /**
-     * Name of the pacient.
-     */
-    @JsonProperty("pacientName")
-    @JsonPropertyDescription(" Name of the pacient.")
+    @JsonProperty("patientName")
+    @JsonPropertyDescription(" Name of the patient.")
     @NotNull
-    @Size(min = 10, message = "Invalid name")
-    private String pacientName;
+    @Size(min = 3, message = "Invalid name")
+    private String patientName;
 
     /**
-     * Address of the pacient.
+     * Address of the patient.
      */
     @JsonProperty("address")
-    @JsonPropertyDescription(" Address of the pacient.")
+    @JsonPropertyDescription(" Address of the patient.")
     @NotNull
     private String address;
 
     /**
-     * Email of the pacient.
+     * Email of the patient.
      */
     @JsonProperty("email")
-    @JsonPropertyDescription(" Email of the pacient.")
+    @JsonPropertyDescription(" Email of the patient.")
     @NotNull
     private String email;
 
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
     @JsonPropertyDescription(" The phone number of the doctor. ")
@@ -78,70 +70,70 @@ public class DeletePacient {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * Name of the pacient.
+     * Name of the patient.
      */
-    @JsonProperty("pacientName")
-    public String getPacientName() {
-        return pacientName;
+  /*  @JsonProperty("patientName")
+    public String getPatientName() {
+        return patientName;
     }
 
-    /**
-     * Name of the pacient.
-     */
-    @JsonProperty("doctorName")
-    public void setPacientName(String Name) {
-        this.pacientName = pacientName;
+    *//**
+     * Name of the patient.
+     *//*
+    @JsonProperty("patientName")
+    public void setPatientName(String Name) {
+        this.patientName = patientName;
     }
 
 
-    /**
-     * Address of the pacient.
-     */
+    *//**
+     * Address of the patient.
+     *//*
     @JsonProperty("address")
-    public String getPacientAddress() {
+    public String getPatientAddress() {
         return address;
     }
 
-    /**
-     * Address of the pacient.
-     */
+    *//**
+     * Address of the patient.
+     *//*
     @JsonProperty("address")
-    public void setPacientAddress(String Address) {
-        this.address = Address;
+    public void setPatientAddress(String Address) {
+        this.address = address;
     }
 
-    /**
-     * Email of the pacient.
-     */
+    *//**
+     * Email of the patient.
+     *//*
     @JsonProperty("email")
-    public String getPacientEmail() {
+    public String getPatientEmail() {
         return email;
     }
 
-    /**
-     * Email of the pacient.
-     */
+    *//**
+     * Email of the patient.
+     *//*
     @JsonProperty("email")
-    public void setPacientEmail(String email) {
+    public void setPatientEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * The phone number of the pacient.
-     */
+    *//**
+     * The phone number of the patient.
+     *//*
     @JsonProperty("phoneNo")
     public String getPhoneNo() {
         return phoneNo;
     }
 
-    /**
-     * The phone number of the pacient.
-     */
+    *//**
+     * The phone number of the patient.
+     *//*
     @JsonProperty("phoneNo")
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
-
+*/
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -154,9 +146,8 @@ public class DeletePacient {
 
     @Override
     public String toString() {
-        return "DeletePacient{" +
-                "pacientId=" + pacientId +
-                ", pacientName='" + pacientName + '\'' +
+        return "AddPatient{" +
+                "patientName='" + patientName + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +

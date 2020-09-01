@@ -1,17 +1,15 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Pacient {
-    private Integer pacientId;
+public class Patient {
+    private Integer patientId;
 
-    private String pacientName;
+    private String patientName;
 
     private String address;
 
@@ -19,27 +17,27 @@ public class Pacient {
 
     private String phoneNo;
 
-    public Integer getPacientId() {
-        return pacientId;
+    public Integer getPatientId() {
+        return patientId;
     }
 
-    public void setPacientId(Integer pacientId) {
-        this.pacientId = pacientId;
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 
-    public String getPacientName() {
-        return pacientName;
+    public String getPatientName() {
+        return patientName;
     }
 
-    public void setPacientName(String pacientName) {
-        this.pacientName = pacientName;
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 
-    public String getAdress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAdress(String adress) {
+    public void setAddress(String adress) {
         this.address = adress;
     }
 

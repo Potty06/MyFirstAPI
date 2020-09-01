@@ -1,48 +1,62 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.getPacient;
-import java.util.ArrayList;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient;
+
+
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
-
-@JsonInclude(JsonInclude.Include.NON_NULL) //if a field is null, it will not show in JSON
+/**
+ * addPacientRsp
+ * <p>
+ * response after inserting a new customer structure into DB.
+ *
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "pacient",
+        "patientId",
         "responseDescription"
 })
+public class AddPatientResponse {
 
-
-public class GetPacientResponse {
-
-    @JsonProperty("doctor")
-    private ArrayList<GetPacient> getPacient;
-
+    /**
+     * The id of the new created patient.
+     *
+     */
+    @JsonProperty("patientId")
+    @JsonPropertyDescription(" The id of the new created patient.")
+    private Integer patientId;
+    /**
+     * Description of the status.
+     *
+     */
     @JsonProperty("responseDescription")
     @JsonPropertyDescription(" Description of the status.")
     private String responseDescription;
-
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public ArrayList<GetPacient> getGetPacient() {
-        return getPacient;
+    /**
+     * The id of the new created patient.
+     *
+     */
+    @JsonProperty("patientId")
+    public Integer getPatientId() {
+        return patientId;
     }
 
-    public void setGetDoctor(ArrayList<GetPacient> getDoctor) {
-        this.getPacient = new ArrayList<>();
-        this.getPacient = getPacient;
+    /**
+     * The id of the new created customer.
+     *
+     */
+    @JsonProperty("patientId")
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 
     /**
      * Description of the status.
+     *
      */
     @JsonProperty("responseDescription")
     public String getResponseDescription() {
@@ -51,6 +65,7 @@ public class GetPacientResponse {
 
     /**
      * Description of the status.
+     *
      */
     @JsonProperty("responseDescription")
     public void setResponseDescription(String responseDescription) {
@@ -67,10 +82,11 @@ public class GetPacientResponse {
         this.additionalProperties.put(name, value);
     }
 
+
     @Override
     public String toString() {
-        return "GetPacientResponse{" +
-                "getPacient=" + getPacient +
+        return "AddPatientResponse{" +
+                "patientId=" + patientId +
                 ", responseDescription='" + responseDescription + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';

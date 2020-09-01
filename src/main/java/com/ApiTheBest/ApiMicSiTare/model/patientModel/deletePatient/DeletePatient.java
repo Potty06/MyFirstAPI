@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.addPacient;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.deletePatient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,40 +25,48 @@ import javax.validation.constraints.*;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "pacientName",
+        "patientId",
+        "patientName",
         "address",
         "email",
         "phoneNo"
 })
-public class AddPacient {
+public class DeletePatient {
 
     /**
-     * Name of the pacient.
+     * Patient id.
      */
-    @JsonProperty("pacientName")
-    @JsonPropertyDescription(" Name of the pacient.")
+    @JsonProperty("patientId")
+    @JsonPropertyDescription(" The id of the patient")
+    private Integer patientId;
+
+    /**
+     * Name of the patient.
+     */
+    @JsonProperty("patientName")
+    @JsonPropertyDescription(" Name of the patient.")
     @NotNull
     @Size(min = 10, message = "Invalid name")
-    private String pacientName;
+    private String patientName;
 
     /**
-     * Address of the pacient.
+     * Address of the patient.
      */
     @JsonProperty("address")
-    @JsonPropertyDescription(" Address of the pacient.")
+    @JsonPropertyDescription(" Address of the patient.")
     @NotNull
     private String address;
 
     /**
-     * Email of the pacient.
+     * Email of the patient.
      */
     @JsonProperty("email")
-    @JsonPropertyDescription(" Email of the pacient.")
+    @JsonPropertyDescription(" Email of the patient.")
     @NotNull
     private String email;
 
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
     @JsonPropertyDescription(" The phone number of the doctor. ")
@@ -70,56 +78,56 @@ public class AddPacient {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * Name of the pacient.
+     * Name of the patient.
      */
-    @JsonProperty("pacientName")
-    public String getPacientName() {
-        return pacientName;
+    @JsonProperty("patientName")
+    public String getPatientName() {
+        return patientName;
     }
 
     /**
-     * Name of the pacient.
+     * Name of the patient.
      */
     @JsonProperty("doctorName")
-    public void setPacientName(String Name) {
-        this.pacientName = pacientName;
+    public void setPatientName(String Name) {
+        this.patientName = patientName;
     }
 
 
     /**
-     * Address of the pacient.
+     * Address of the patient.
      */
     @JsonProperty("address")
-    public String getPacientAddress() {
+    public String getPatientAddress() {
         return address;
     }
 
     /**
-     * Address of the pacient.
+     * Address of the patient.
      */
     @JsonProperty("address")
-    public void setPacientAddress(String Address) {
+    public void setPatientAddress(String Address) {
         this.address = Address;
     }
 
     /**
-     * Email of the pacient.
+     * Email of the patient.
      */
     @JsonProperty("email")
-    public String getPacientEmail() {
+    public String getPatientEmail() {
         return email;
     }
 
     /**
-     * Email of the pacient.
+     * Email of the patient.
      */
     @JsonProperty("email")
-    public void setPacientEmail(String email) {
+    public void setPatientEmail(String email) {
         this.email = email;
     }
 
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
     public String getPhoneNo() {
@@ -127,7 +135,7 @@ public class AddPacient {
     }
 
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
     public void setPhoneNo(String phoneNo) {
@@ -146,8 +154,9 @@ public class AddPacient {
 
     @Override
     public String toString() {
-        return "AddPacient{" +
-                "pacientName='" + pacientName + '\'' +
+        return "DeletePatient{" +
+                "patientId=" + patientId +
+                ", patientName='" + patientName + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +

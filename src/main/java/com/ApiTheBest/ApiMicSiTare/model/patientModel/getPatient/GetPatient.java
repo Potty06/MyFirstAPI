@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.getPacient;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,58 +15,59 @@ import javax.validation.constraints.*;
 
     @AllArgsConstructor
     @NoArgsConstructor
-    @Getter
-    @Setter
     @Data
 
 /**
- * the pacient inserted into DB
+ * the patient inserted into DB
  *
  */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonPropertyOrder({
-            "pacientId",
-            "pacientName",
+            "patientId",
+            "patientName",
             "address",
             "email",
             "phoneNo"
     })
-    public class GetPacient {
+
+    @Getter
+    @Setter
+    public class GetPatient {
 
         /**
          * Doctor id.
          */
-        @JsonProperty("pacientId")
-        @JsonPropertyDescription(" The id of the pacient")
-        private Integer pacientId;
+        @JsonProperty("patientId")
+        @JsonPropertyDescription(" The id of the patient")
+        private Integer patientId;
 
         /**
-         * Name of the pacient.
+         * Name of the patient.
          */
-        @JsonProperty("pacientName")
-        @JsonPropertyDescription(" Name of the pacient.")
+        @JsonProperty("patientName")
+        @JsonPropertyDescription(" Name of the patient.")
         @NotNull
         @Size(min = 10, message = "Invalid name")
-        private String pacientName;
+        private String patientName;
 
         /**
-         * Address of the pacient.
+         * Address of the patient.
          */
         @JsonProperty("address")
-        @JsonPropertyDescription(" Address of the pacient.")
+        @JsonPropertyDescription(" Address of the patient.")
         @NotNull
         private String address;
 
         /**
-         * Email of the pacient.
+         * Email of the patient.
          */
         @JsonProperty("email")
-        @JsonPropertyDescription(" Email of the pacient.")
+        @JsonPropertyDescription(" Email of the patient.")
         @NotNull
         private String email;
 
         /**
-         * The phone number of the pacient.
+         * The phone number of the patient.
          */
         @JsonProperty("phoneNo")
         @JsonPropertyDescription(" The phone number of the doctor. ")
@@ -77,66 +78,66 @@ import javax.validation.constraints.*;
         @JsonIgnore
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-        /**
-         * Name of the pacient.
-         */
-        @JsonProperty("pacientName")
-        public String getPacientName() {
-            return pacientName;
+       /* *//**
+         * Name of the patient.
+         *//*
+        @JsonProperty("patientName")
+        public String getPatientName() {
+            return patientName;
         }
 
-        /**
-         * Name of the pacient.
-         */
-        @JsonProperty("doctorName")
-        public void setPacientName(String Name) {
-            this.pacientName = pacientName;
+        *//**
+         * Name of the patient.
+         *//*
+        @JsonProperty("patientName")
+        public void setPatientName(String Name) {
+            this.patientName = patientName;
         }
 
 
-        /**
-         * Address of the pacient.
-         */
+        *//**
+         * Address of the patient.
+         *//*
         @JsonProperty("address")
-        public String getPacientAddress() {
+        public String getPatientAddress() {
             return address;
         }
 
-        /**
-         * Address of the pacient.
-         */
+        *//**
+         * Address of the patient.
+         *//*
         @JsonProperty("address")
-        public void setPacientAddress(String Address) {
+        public void setPatientAddress(String Address) {
             this.address = Address;
         }
 
-        /**
-         * Email of the pacient.
-         */
+        *//**
+         * Email of the patient.
+         *//*
         @JsonProperty("email")
-        public String getPacientEmail() {
+        public String getPatientEmail() {
             return email;
         }
 
-        /**
-         * Email of the pacient.
-         */
+        *//**
+         * Email of the patient.
+         *//*
         @JsonProperty("email")
-        public void setPacientEmail(String email) {
+        public void setPatientEmail(String email) {
             this.email = email;
         }
 
-        /**
-         * The phone number of the pacient.
-         */
+        *//**
+         * The phone number of the patient.
+         *//*
         @JsonProperty("phoneNo")
         public String getPhoneNo() {
             return phoneNo;
         }
 
-        /**
-         * The phone number of the pacient.
-         */
+        *//**
+         * The phone number of the patient.
+         *//*
         @JsonProperty("phoneNo")
         public void setPhoneNo(String phoneNo) {
             this.phoneNo = phoneNo;
@@ -151,12 +152,12 @@ import javax.validation.constraints.*;
         public void setAdditionalProperty(String name, Object value) {
             this.additionalProperties.put(name, value);
         }
-
+*/
         @Override
         public String toString() {
-            return "GetPacient{" +
-                    "pacientId=" + pacientId +
-                    ", pacientName='" + pacientName + '\'' +
+            return "GetPatient{" +
+                    "patientId=" + patientId +
+                    ", patientName='" + patientName + '\'' +
                     ", address='" + address + '\'' +
                     ", email='" + email + '\'' +
                     ", phoneNo='" + phoneNo + '\'' +

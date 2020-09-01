@@ -1,22 +1,28 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.deletePacient;
-
-
-import com.fasterxml.jackson.annotation.*;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient;
 
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 
 /**
- * deletePacientRsp
+ * updateCustomerRsp
  * <p>
- * response after inserting a new customer structure into DB.
+ * response after updating a customer into DB.
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "responseDescription"
 })
-public class DeletePacientResponse {
+
+public class UpdatePatientResponse {
 
     /**
      * Description of the status.
@@ -58,7 +64,7 @@ public class DeletePacientResponse {
 
     @Override
     public String toString() {
-        return "DeletePacientResponse{" +
+        return "UpdatePatientResponse{" +
                 "responseDescription='" + responseDescription + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';

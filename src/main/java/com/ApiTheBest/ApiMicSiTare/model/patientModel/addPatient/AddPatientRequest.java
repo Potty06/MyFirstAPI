@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.updatePacient;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,46 +12,45 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.validation.Valid;
 
-
 /**
- * updatePacientReq
+ * addCustomerReq
  * <p>
- * update a pacient structure in DB.
+ * Add a new Customer to the DB.
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "pacient"
+        "patient"
 })
-public class UpdatePacientRequest {
+public class AddPatientRequest {
 
     /**
-     * the pacient updated into DB
+     * the patient inserted into DB
      *
      */
-    @JsonProperty("pacient")
-    @JsonPropertyDescription(" the pacient updated into DB")
+    @JsonProperty("patient")
+    @JsonPropertyDescription(" the patient inserted into DB")
     @Valid
-    private UpdatePacient pacient;
+    private AddPatient patient;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * the pacient updated into DB
+     * the patient inserted into DB
      *
      */
-    @JsonProperty("pacient")
-    public UpdatePacient getPacient() {
-        return pacient;
+    @JsonProperty("patient")
+    public AddPatient getPatient() {
+        return patient;
     }
 
     /**
-     * the pacient updated into DB
+     * the customer inserted into DB
      *
      */
-    @JsonProperty("pacient")
-    public void setPacient(UpdatePacient pacient) {
-        this.pacient = pacient;
+    @JsonProperty("patient")
+    public void setPatient(AddPatient patient) {
+        this.patient = patient;
     }
 
     @JsonAnyGetter
@@ -66,8 +65,8 @@ public class UpdatePacientRequest {
 
     @Override
     public String toString() {
-        return "UpdatePacientRequest{" +
-                "pacient=" + pacient +
+        return "AddPatientRequest{" +
+                "patient=" + patient +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

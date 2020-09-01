@@ -1,6 +1,5 @@
-package com.ApiTheBest.ApiMicSiTare.model.pacientModel.updatePacient;
+package com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -15,55 +14,55 @@ import javax.validation.constraints.*;
 
 
 /**
- * the pacient updated into DB
+ * the patient updated into DB
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "pacientId",
-        "pacientName",
+        "patientId",
+        "patientName",
         "address",
         "email",
         "phoneNo"
 })
 
-public class UpdatePacient {
+public class UpdatePatient {
 
     /**
-     * Pacient id.
+     * Patient id.
      */
-    @JsonProperty("pacientId")
-    @JsonPropertyDescription(" Pacient id.")
-    private Integer pacientId;
+    @JsonProperty("patientId")
+    @JsonPropertyDescription(" Patient id.")
+    private Integer patientId;
     /**
-     * Name of the pacient.
+     * Name of the patient.
      */
-    @JsonProperty("pacientName")
-    @JsonPropertyDescription(" Name of the pacient.")
+    @JsonProperty("patientName")
+    @JsonPropertyDescription(" Name of the patient.")
     @NotNull
-    @Size(min = 5, message = "Invalid name")
+    @Size(min = 3, message = "Invalid name")
     @Pattern(regexp = "[a-zA-Z ]*")
-    private String pacientName;
+    private String patientName;
     /**
-     * The pacient address.
+     * The patient address.
      */
     @JsonProperty("address")
-    @JsonPropertyDescription(" The pacient address.")
+    @JsonPropertyDescription(" The patient address.")
     private String address;
     /**
-     * The pacient email.
+     * The patient email.
      */
     @JsonProperty("email")
-    @JsonPropertyDescription(" The pacient email.")
+    @JsonPropertyDescription(" The patient email.")
     @NotNull
     @Size(min = 8)
     @Email(message = "Wrong type of email!")
     private String email;
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
-    @JsonPropertyDescription(" The phone number of the pacient. ")
+    @JsonPropertyDescription(" The phone number of the patient. ")
     @NotNull
     @Pattern(regexp = "(\\+40|0)[0-9]{9}")
     private String phoneNo;
@@ -71,39 +70,39 @@ public class UpdatePacient {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * Pacient id.
+     * Patient id.
      */
-    @JsonProperty("pacientId")
-    public Integer getPacientId() {
-        return pacientId;
+    @JsonProperty("patientId")
+    public Integer getPatientId() {
+        return patientId;
     }
 
     /**
-     * Pacient id.
+     * Patient id.
      */
-    @JsonProperty("pacientId")
-    public void setPacientId(Integer pacientId) {
-        this.pacientId = pacientId;
+    @JsonProperty("patientId")
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 
     /**
-     * Name of the pacient.
+     * Name of the patient.
      */
-    @JsonProperty("pacientName")
-    public String getPacientName() {
-        return pacientName;
+    @JsonProperty("patientName")
+    public String getPatientName() {
+        return patientName;
     }
 
     /**
-     * Name of the pacient.
+     * Name of the patient.
      */
-    @JsonProperty("pacientName")
-    public void setPacientName(String pacientName) {
-        this.pacientName = pacientName;
+    @JsonProperty("patientName")
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 
     /**
-     * The pacient address.
+     * The patient address.
      */
     @JsonProperty("address")
     public String getAddress() {
@@ -111,7 +110,7 @@ public class UpdatePacient {
     }
 
     /**
-     * The pacient address.
+     * The patient address.
      */
     @JsonProperty("address")
     public void setAddress(String address) {
@@ -119,7 +118,7 @@ public class UpdatePacient {
     }
 
     /**
-     * The pacient email.
+     * The patient email.
      */
     @JsonProperty("email")
     public String getEmail() {
@@ -127,7 +126,7 @@ public class UpdatePacient {
     }
 
     /**
-     * The pacient email.
+     * The patient email.
      */
     @JsonProperty("email")
     public void setEmail(String email) {
@@ -135,7 +134,7 @@ public class UpdatePacient {
     }
 
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
     public String getPhoneNo() {
@@ -143,7 +142,7 @@ public class UpdatePacient {
     }
 
     /**
-     * The phone number of the pacient.
+     * The phone number of the patient.
      */
     @JsonProperty("phoneNo")
     public void setPhoneNo(String phoneNo) {
@@ -162,9 +161,9 @@ public class UpdatePacient {
 
     @Override
     public String toString() {
-        return "UpdatePacient{" +
-                "pacientId=" + pacientId +
-                ", pacientName='" + pacientName + '\'' +
+        return "UpdatePatient{" +
+                "patientId=" + patientId +
+                ", patientName='" + patientName + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
