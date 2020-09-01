@@ -3,7 +3,7 @@ package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.updateAppointment;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ApiTheBest.ApiMicSiTare.model.pacientModel.updatePacient.UpdatePacient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatient;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,19 +25,20 @@ public class UpdateAppointmentRequest {
     @JsonProperty("appointment")
     @JsonPropertyDescription(" the appointment updated into DB")
     @Valid
-    private UpdatePacient appointment;
+    private UpdatePatient appointment;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 
     @JsonProperty("pacient")
-    public UpdatePacient getAppointment() {
+    public UpdatePatient getAppointment() {
         return appointment;
     }
 
 
     @JsonProperty("appointment")
-    public void setAppointment(UpdatePacient appointment) {
+
+    public void setAppointment(UpdatePatient appointment) {
         this.appointment = appointment;
     }
 

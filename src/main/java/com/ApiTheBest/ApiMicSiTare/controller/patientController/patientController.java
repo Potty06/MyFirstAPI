@@ -13,16 +13,13 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 public interface patientController {
-    @GetMapping("/getPatient")
+    @GetMapping("/display")
     GetPatientResponse getPatients(@RequestParam Optional<Integer> patientId,
                                    @RequestParam Optional<String> phoneNumber,
                                    HttpServletResponse httpServletResponse);
 
-    @PostMapping("/addPatient")
+    @PostMapping("/create")
     AddPatientResponse addPatient(@RequestBody @Valid AddPatientRequest addPatientRequest,
                                    HttpServletResponse response);
-
-    @PutMapping("/updatePatient")
-    ResponseEntity<UpdatePatientResponse> updatePatient(@RequestBody @Valid UpdatePatientRequest patientRequest);
 }
 

@@ -1,7 +1,7 @@
 package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.getAppointment;
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
-import com.ApiTheBest.ApiMicSiTare.model.pacientModel.Pacient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,8 +37,8 @@ public class GetAppointment {
     @JsonPropertyDescription(" The pacient ")
     @NotNull
 
-    private Pacient pacient;
 
+    private Patient patient;
     @JsonProperty("doctor")
     @JsonPropertyDescription(" The doctor")
     private Doctor doctor;
@@ -55,7 +55,8 @@ public class GetAppointment {
     public String toString() {
         return "GetAppointment{" +
                 "appointmentId=" + appointmentId +
-                ", pacient=" + pacient +
+
+                ", pacient=" + patient +
                 ", doctor=" + doctor +
                 ", appointmentDate=" + appointmentDate +
                 ", appointmentTime=" + appointmentTime +

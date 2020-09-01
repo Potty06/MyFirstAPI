@@ -1,7 +1,7 @@
 package com.ApiTheBest.ApiMicSiTare.model.appointmentModel;
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
-import com.ApiTheBest.ApiMicSiTare.model.pacientModel.Pacient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +13,8 @@ import java.time.LocalTime;
 public class Appointment {
     private Integer appointmentId;
 
-    private Pacient pacient;
+
+    private Patient patient;
 
     private Doctor doctor;
 
@@ -29,12 +30,12 @@ public class Appointment {
         this.appointmentId = appointmentId;
     }
 
-    public Pacient getPacient() {
-        return pacient;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPacient(Pacient pacient) {
-        this.pacient = pacient;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Doctor getDoctor() {
