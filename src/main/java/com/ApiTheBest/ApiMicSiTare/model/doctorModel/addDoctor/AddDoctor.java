@@ -34,6 +34,7 @@ public class AddDoctor {
     @JsonPropertyDescription(" Name of the doctor.")
     @NotNull
     @Size(min = 3, message = "Invalid name")
+    @Pattern(regexp = "[a-zA-Z ]*")
     private String doctorName;
     /**
      * The phone number of the doctor.
