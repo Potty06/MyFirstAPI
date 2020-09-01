@@ -1,6 +1,5 @@
 package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.addAppointment;
 
-
 import com.fasterxml.jackson.annotation.*;
 
 import java.util.HashMap;
