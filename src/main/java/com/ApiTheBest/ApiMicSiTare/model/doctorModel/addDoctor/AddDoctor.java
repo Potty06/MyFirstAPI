@@ -77,7 +77,7 @@ public class AddDoctor {
     public void setDoctorName(String Name) {
         this.doctorName = doctorName;
     }
-
+//git
 
     /**
      * The phone number of the doctor.
