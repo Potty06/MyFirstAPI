@@ -28,8 +28,8 @@ public class AddDoctor {
      */
     @JsonProperty("doctorName")
     @JsonPropertyDescription(" Name of the customer.")
-    @NotNull
-    @Size(min = 10, message = "Invalid name")
+    //@NotNull
+    @Size(min = 3, message = "Invalid name")
     private String doctorName;
     /**
      * The phone number of the doctor.
@@ -45,7 +45,7 @@ public class AddDoctor {
      */
     @JsonProperty("contract")
     @JsonPropertyDescription(" Type of contract")
-    @NotNull
+    //@NotNull
 // sa nu uiti ma mamaie ma sa scrii pattern pt full time/part time
     private String contract;
     /**
@@ -53,7 +53,7 @@ public class AddDoctor {
      */
     @JsonProperty("medicSpeciality")
     @JsonPropertyDescription(" Medic Speciality.")
-    @NotNull
+    //@NotNull
 // validari de facut
     private String medicSpeciality;
 
