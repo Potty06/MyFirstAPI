@@ -1,4 +1,7 @@
 package com.ApiTheBest.ApiMicSiTare.controller.patientController;
+
+import com.ApiTheBest.ApiMicSiTare.controller.Lists;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
 import com.ApiTheBest.ApiMicSiTare.model.errorModel.ErrorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatient;
@@ -6,50 +9,32 @@ import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientReque
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatientResponse;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatient;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientRequest;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RestController("/patient")
+@RestController
 @RequestMapping("/patient")
 public class patientControllerImpl implements patientController {
 
     private Logger log = LoggerFactory.getLogger(patientControllerImpl.class);
 
     private static List<Patient> patients = new ArrayList<>();
+
     private static Integer patientIdValue = 4;
 
-    static {
-
-        Patient patient1 = new Patient(1, "John", "LA",
-                "john@gmail.com", "0745896358");
-        Patient patient2 = new Patient(2, "Dana", "ND",
-                "dana@gmail.com", "0769896452");
-        Patient patient3 = new Patient(3, "Julia", "AZ",
-                "julia@gmail.com", "0765698236");
-        patients.add(patient1);
-        patients.add(patient2);
-        patients.add(patient3);
+    static{
+        patients = Lists.getPatients();
     }
-
 
     @Override
     public GetPatientResponse getPatients(Optional<Integer> patientId,
@@ -69,7 +54,7 @@ public class patientControllerImpl implements patientController {
             //processing
             // create response list
             ArrayList<GetPatient> responseList = new ArrayList<>();
-            //patientrId is found in the list
+            //patientId is found in the list
             for (Patient patient : patients) {
 
                 //patient found, send back response
@@ -181,6 +166,7 @@ public class patientControllerImpl implements patientController {
         patient.setPhoneNo(addPatient.getPhoneNo());
 
         patients.add(patient);
+        Lists.setPatients(patients);
         //send success response
         response.setStatus(HttpServletResponse.SC_CREATED);
         AddPatientResponse addResponse = new AddPatientResponse();
@@ -189,38 +175,6 @@ public class patientControllerImpl implements patientController {
         addResponse.setResponseDescription("Patient added");
         return addResponse;
 
-    }
-
-    @Override
-    public ResponseEntity<UpdatePatientResponse> updatePatient(UpdatePatientRequest patientRequest) {
-        UpdatePatient updatePatient = patientRequest.getPatient();
-
-        //find patient in the list by ID
-        for (Patient patient : patients) {
-            //checking if the ID on the request matches any ID in the list
-            if (patient.getPatientId().equals(updatePatient.getPatientId())) {
-                //if found, make sure that the request is not identical to the entry
-                if (checkUpdate(updatePatient, patient)) {
-                    //if identical, return error message
-                    UpdatePatientResponse response = new UpdatePatientResponse();
-                    response.setResponseDescription("Request identical with entry");
-                    return new ResponseEntity<UpdatePatientResponse>(response, HttpStatus.CONFLICT);
-                } else {
-                    //if not identical, make update
-                    patient.setPatientName(updatePatient.getPatientName());
-                    patient.setAddress(updatePatient.getAddress());
-                    patient.setEmail(updatePatient.getEmail());
-                    patient.setPhoneNo(updatePatient.getPhoneNo());
-                    UpdatePatientResponse response = new UpdatePatientResponse();
-                    response.setResponseDescription("Item updated");
-                    return new ResponseEntity<UpdatePatientResponse>(response, HttpStatus.OK);
-                }
-            }
-        }
-        //in case patient was not found, return 404
-        UpdatePatientResponse response = new UpdatePatientResponse();
-        response.setResponseDescription("Patient with id = " + updatePatient.getPatientId() + " not found.");
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     private boolean checkAddPatient(AddPatient addPatient, Patient patient) {
@@ -234,15 +188,8 @@ public class patientControllerImpl implements patientController {
         return false;
     }
 
-    private boolean checkUpdate(UpdatePatient updatePatient, Patient patient) {
-        //validate for mandatory fields
-        if (   updatePatient.getPatientName().equals(patient.getPatientName()) &&
-                updatePatient.getAddress().equals(patient.getAddress()) &&
-                updatePatient.getPhoneNo().equals(patient.getPhoneNo())) {
-            return true;
-        } else {
-            return false;
-        }
+    public List<Patient> getList(){
+        return patients;
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

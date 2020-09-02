@@ -1,10 +1,8 @@
 package com.ApiTheBest.ApiMicSiTare.controller.doctorController;
 
-import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorRequest;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctorResponse;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,5 +21,5 @@ public interface DoctorController {
 
     @PostMapping("/create")
     AddDoctorResponse addDoctor(@RequestBody @Valid AddDoctorRequest addDoctorRequest,
-                                  HttpServletResponse response);
+                                HttpServletResponse response);
 }

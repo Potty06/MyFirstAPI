@@ -3,9 +3,6 @@ package com.ApiTheBest.ApiMicSiTare.controller.patientController;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientRequest;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatientResponse;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientRequest;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,16 +10,13 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 public interface patientController {
-    @GetMapping("/getPatient")
+    @GetMapping("/display")
     GetPatientResponse getPatients(@RequestParam Optional<Integer> patientId,
                                    @RequestParam Optional<String> phoneNumber,
                                    HttpServletResponse httpServletResponse);
 
-    @PostMapping("/addPatient")
+    @PostMapping("/create")
     AddPatientResponse addPatient(@RequestBody @Valid AddPatientRequest addPatientRequest,
                                    HttpServletResponse response);
-
-    @PutMapping("/updatePatient")
-    ResponseEntity<UpdatePatientResponse> updatePatient(@RequestBody @Valid UpdatePatientRequest patientRequest);
 }
 

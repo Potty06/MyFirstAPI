@@ -37,6 +37,7 @@ public class UpdateAppointmentRequest {
 
 
     @JsonProperty("appointment")
+
     public void setAppointment(UpdatePatient appointment) {
         this.appointment = appointment;
     }

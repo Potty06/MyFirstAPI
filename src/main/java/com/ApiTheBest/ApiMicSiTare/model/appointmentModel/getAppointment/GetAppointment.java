@@ -21,8 +21,8 @@ import java.time.LocalTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "appointmentId",
-        "pacient",
-        "doctor",
+        "patientName",
+        "doctorName",
         "appointmentDate",
         "appointmentTime"
 })
@@ -33,15 +33,15 @@ public class GetAppointment {
     @JsonPropertyDescription(" appointmentId ")
     private Integer appointmentId;
 
-    @JsonProperty("pacient")
-    @JsonPropertyDescription(" The pacient ")
+    @JsonProperty("patientName")
+    @JsonPropertyDescription(" The patient ")
     @NotNull
 
-    private Patient pacient;
+    private String patientName;
 
-    @JsonProperty("doctor")
+    @JsonProperty("doctorName")
     @JsonPropertyDescription(" The doctor")
-    private Doctor doctor;
+    private String doctorName;
 
     @JsonProperty("appointmentDate")
     @JsonPropertyDescription(" The appointmentDate.")
@@ -55,8 +55,8 @@ public class GetAppointment {
     public String toString() {
         return "GetAppointment{" +
                 "appointmentId=" + appointmentId +
-                ", pacient=" + pacient +
-                ", doctor=" + doctor +
+                ", patientName=" + patientName +
+                ", doctorName=" + doctorName +
                 ", appointmentDate=" + appointmentDate +
                 ", appointmentTime=" + appointmentTime +
                 '}';

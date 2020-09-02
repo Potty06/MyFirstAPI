@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
@@ -33,7 +32,7 @@ public class UpdateAppointment {
     @JsonPropertyDescription(" The pacient ")
     @NotNull
 
-    private Patient pacient;
+    private Patient patient;
 
     @JsonProperty("doctor")
     @JsonPropertyDescription(" The doctor")
@@ -53,7 +52,7 @@ public class UpdateAppointment {
     @Override
     public String toString() {
         return "UpdatePacient{" +
-                "pacient=" + pacient +
+                "pacient=" + patient +
                 ", doctor=" + doctor +
                 ", appointmentDate=" + appointmentDate +
                 ", appointmentTime=" + appointmentTime +

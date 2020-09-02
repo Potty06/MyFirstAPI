@@ -37,7 +37,7 @@ public class AddAppointmentResponse {
      *
      */
     @JsonProperty("appointmentId")
-    public Integer getCustomerId() {
+    public Integer getAppointmentId() {
         return appointmentId;
     }
 
@@ -46,7 +46,7 @@ public class AddAppointmentResponse {
      *
      */
     @JsonProperty("appointmentId")
-    public void setCustomerId(Integer customerId) {
+    public void setAppointmentId(Integer appointmentId) {
         this.appointmentId = appointmentId;
     }
 

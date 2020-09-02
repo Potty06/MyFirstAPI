@@ -2,6 +2,8 @@ package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.getAppointment;
 
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +15,8 @@ import java.util.Map;
  * get appointment structure, stored in DB.
  *
  */
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL) //if a field is null, it will not show in JSON
 @JsonPropertyOrder({
         "appointment",
