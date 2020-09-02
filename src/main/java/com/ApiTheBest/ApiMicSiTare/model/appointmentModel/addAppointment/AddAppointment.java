@@ -1,7 +1,7 @@
 package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.addAppointment;
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
-import com.ApiTheBest.ApiMicSiTare.model.pacientModel.Pacient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +35,7 @@ public class AddAppointment {
     @JsonPropertyDescription(" The pacient ")
     @NotNull
 
-    private Pacient pacient;
+    private Patient pacient;
 
     @JsonProperty("doctor")
     @JsonPropertyDescription(" The doctor")

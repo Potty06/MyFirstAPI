@@ -2,7 +2,7 @@ package com.ApiTheBest.ApiMicSiTare.model.appointmentModel.deleteAppointment;
 
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
-import com.ApiTheBest.ApiMicSiTare.model.pacientModel.Pacient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
@@ -32,7 +32,7 @@ public class DeleteAppointment {
     @JsonPropertyDescription(" The pacient ")
     @NotNull
 
-    private Pacient pacient;
+    private Patient pacient;
 
     @JsonProperty("doctor")
     @JsonPropertyDescription(" The doctor")

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RestController/*("/patient")*/
+@RestController("/patient")
 @RequestMapping("/patient")
 public class patientControllerImpl implements patientController {
 
