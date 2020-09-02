@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.controller.adoctorController;
+package com.ApiTheBest.ApiMicSiTare.controller.doctorController;
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorRequest;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorResponse;

@@ -1,5 +1,6 @@
-package com.ApiTheBest.ApiMicSiTare.controller.adoctorController;
+package com.ApiTheBest.ApiMicSiTare.controller.doctorController;
 
+import com.ApiTheBest.ApiMicSiTare.controller.Lists;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorRequest;
@@ -26,11 +27,9 @@ public class DoctorControllerImpl implements DoctorController{
     private static List<Doctor> doctors = new ArrayList<>();
     private static Integer doctorIdValue  = 3;
 
-    static {
-        doctors.add(new Doctor(1, "Luiza", "0750883434", "blabla", "medic"));
-        doctors.add(new Doctor(2, "Luiz", "0750883435", "blabla", "medic"));
+    static{
+        doctors = Lists.getDoctors();
     }
-
 
     @Override
     public GetDoctorResponse displayDoctor(Optional<Integer> doctorId, Optional<String> doctorName, HttpServletResponse httpServletResponse) {
@@ -144,6 +143,7 @@ public class DoctorControllerImpl implements DoctorController{
         doctor.setPhoneNo(addDoctor.getPhoneNo());
 
         doctors.add(doctor);
+        Lists.setDoctors(doctors);
         //send response
         response.setStatus(HttpServletResponse.SC_CREATED);
         AddDoctorResponse addResponse = new AddDoctorResponse();
@@ -164,7 +164,4 @@ public class DoctorControllerImpl implements DoctorController{
 
     }
 
-    public List<Doctor> getList(){
-        return doctors;
-    }
 }

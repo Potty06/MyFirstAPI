@@ -1,5 +1,7 @@
-package com.ApiTheBest.ApiMicSiTare.controller.apatientController;
+package com.ApiTheBest.ApiMicSiTare.controller.patientController;
 
+import com.ApiTheBest.ApiMicSiTare.controller.Lists;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
 import com.ApiTheBest.ApiMicSiTare.model.errorModel.ErrorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatient;
@@ -27,21 +29,12 @@ public class patientControllerImpl implements patientController {
     private Logger log = LoggerFactory.getLogger(patientControllerImpl.class);
 
     private static List<Patient> patients = new ArrayList<>();
+
     private static Integer patientIdValue = 4;
 
-    static {
-
-        Patient patient1 = new Patient(1, "John", "LA",
-                "john@gmail.com", "0745896358");
-        Patient patient2 = new Patient(2, "Dana", "ND",
-                "dana@gmail.com", "0769896452");
-        Patient patient3 = new Patient(3, "Julia", "AZ",
-                "julia@gmail.com", "0765698236");
-        patients.add(patient1);
-        patients.add(patient2);
-        patients.add(patient3);
+    static{
+        patients = Lists.getPatients();
     }
-
 
     @Override
     public GetPatientResponse getPatients(Optional<Integer> patientId,
@@ -173,6 +166,7 @@ public class patientControllerImpl implements patientController {
         patient.setPhoneNo(addPatient.getPhoneNo());
 
         patients.add(patient);
+        Lists.setPatients(patients);
         //send success response
         response.setStatus(HttpServletResponse.SC_CREATED);
         AddPatientResponse addResponse = new AddPatientResponse();

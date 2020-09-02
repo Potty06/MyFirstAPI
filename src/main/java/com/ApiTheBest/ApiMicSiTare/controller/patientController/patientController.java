@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.controller.apatientController;
+package com.ApiTheBest.ApiMicSiTare.controller.patientController;
 
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientRequest;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;

@@ -1,45 +1,48 @@
 package com.ApiTheBest.ApiMicSiTare.controller.AppointmentController;
 
-import com.ApiTheBest.ApiMicSiTare.controller.adoctorController.DoctorControllerImpl;
-import com.ApiTheBest.ApiMicSiTare.controller.apatientController.patientControllerImpl;
+import com.ApiTheBest.ApiMicSiTare.controller.Lists;
+import com.ApiTheBest.ApiMicSiTare.controller.doctorController.DoctorControllerImpl;
+import com.ApiTheBest.ApiMicSiTare.controller.patientController.patientControllerImpl;
 import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.Appointment;
+import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.addAppointment.AddAppointment;
+import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.addAppointment.AddAppointmentRequest;
+import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.addAppointment.AddAppointmentResponse;
 import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.getAppointment.GetAppointment;
 import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.getAppointment.GetAppointmentResponse;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctor;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.print.Doc;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/appointment")
 @Slf4j
 
 public class AppointmentControllerImpl implements AppointmentController {
 
     private static List<Appointment> appointments = new ArrayList<>();
-    private static Integer appointmentIdValue  = 3;
-    //private static DoctorControllerImpl doctorController;
-    //private static patientControllerImpl patientController;
-
+    private static Integer appointmentIdValue  = 2;
+    private static List<Doctor> doctors = new ArrayList<>();
+    private static List<Patient> patients = new ArrayList<>();
     static {
-        List<Doctor> doctors = new ArrayList<>();
-        //doctors = doctorController.getList();
 
-        List<Patient> patients = new ArrayList<>();
-        //patients = patientController.getList();
+        doctors = Lists.getDoctors();
+        patients = Lists.getPatients();
 
-        appointments.add(new Appointment(1, "Marcel" , "Mirel",
+        appointments.add(new Appointment(1, patients.get(0).getPatientName() , doctors.get(0).getDoctorName(),
                 LocalDate.of(2020, 07, 12),
                 LocalTime.now()));
     }
@@ -123,10 +126,128 @@ public class AppointmentControllerImpl implements AppointmentController {
     }
 
 
-//    @Override
-//    public AddAppointmentResponse addAppointment(@Valid AddAppointmentRequest addAppointmentRequest, HttpServletResponse response) {
-//        return null;
-//    }
+    @Override
+    public AddAppointmentResponse addAppointment(@Valid AddAppointmentRequest addAppointmentRequest, HttpServletResponse response) {
 
+        AddAppointment addAppointment = addAppointmentRequest.getAppointment();
+
+        boolean checkDoctor = false;
+        boolean checkPatient = false;
+        //check if doctor already exists
+        for(Doctor doctor: doctors){
+            if(doctor.getDoctorName().equals(addAppointment.getDoctorName())) {
+               checkDoctor = true;
+            }
+        }
+        for(Patient patient: patients){
+            if(patient.getPatientName().equals(addAppointment.getPatientName())) {
+                checkPatient = true;
+            }
+        }
+
+        if(checkDoctor == false && checkPatient == false){
+            log.info("Doctor and patient not exists!");
+            log.trace("Doctor with doctor name " + addAppointment.getDoctorName() + " and patient with name: " + addAppointment.getPatientName());
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            AddAppointmentResponse addResponse = new AddAppointmentResponse();
+            addResponse.setResponseDescription("Doctor and patient do not exist in the lists!");
+            return addResponse;
+        }
+
+        else if(checkPatient == false){
+            log.info("Patient not exists!");
+            log.trace("Patient with patient name " + addAppointment.getPatientName());
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            AddAppointmentResponse addResponse = new AddAppointmentResponse();
+            addResponse.setResponseDescription("Patient does not exist in the list, please register!");
+            return addResponse;
+        }
+        else if(checkDoctor == false){
+            log.info("Doctor not exists!");
+            log.trace("Doctor with doctor name " + addAppointment.getDoctorName());
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            AddAppointmentResponse addResponse = new AddAppointmentResponse();
+            addResponse.setResponseDescription("Doctor does not exist in the list, we don't have this doctor in the Hospital!");
+            return addResponse;
+        }
+
+        //check if appointment already exists
+        for(Appointment appointment: appointments){
+            if(checkAddAppointment(appointment, addAppointment)){
+                log.info("Appointment already exists!");
+                log.trace("Appointment with doctor name " + addAppointment.getDoctorName() + ", " + "with Patient name: " +
+                        addAppointment.getPatientName()+ ", " + "with Date : " + addAppointment.getAppointmentDate());
+                response.setStatus(HttpServletResponse.SC_CONFLICT);
+                AddAppointmentResponse addResponse = new AddAppointmentResponse();
+                addResponse.setResponseDescription("Appointment already exists!");
+                return addResponse;
+            }
+        }
+
+        //check if appointmentDate and appointmentTime already exists
+        for(Appointment appointment: appointments){
+            if(checkDateTime(appointment, addAppointment)){
+                log.info("Appointment for the chosen doctor, at the specified date and time already exists!");
+                response.setStatus(HttpServletResponse.SC_CONFLICT);
+                AddAppointmentResponse addResponse = new AddAppointmentResponse();
+                addResponse.setResponseDescription("Appointment for the specified date, at the specified date already exists!");
+                return addResponse;
+            }
+        }
+
+
+        //if not, add him to the list
+        log.info("Called /appointment/create");
+        log.trace("Called /appointment/create with doctor name " + addAppointment.getDoctorName() + ", " + "with Patient name: " +
+                addAppointment.getPatientName()+ ", " + "with Date : " + addAppointment.getAppointmentDate());
+        log.debug("Called /appointment/create at " + LocalDate.now());
+
+        Appointment appointment = new Appointment();
+        appointment.setAppointmentId(appointmentIdValue);
+
+        appointment.setDoctorName(addAppointment.getDoctorName());
+        appointment.setPatientName(addAppointment.getPatientName());
+        appointment.setAppointmentDate(addAppointment.getAppointmentDate());
+        appointment.setAppointmentTime(addAppointment.getAppointmentTime());
+
+        appointments.add(appointment);
+        //send response
+        response.setStatus(HttpServletResponse.SC_CREATED);
+        AddAppointmentResponse addResponse = new AddAppointmentResponse();
+        addResponse.setAppointmentId(appointmentIdValue);
+        appointmentIdValue++;
+        addResponse.setResponseDescription("Appointment added");
+        return addResponse;
+
+    }
+
+    private boolean checkAddAppointment(Appointment appointment, AddAppointment addAppointment){
+        if(appointment.getDoctorName().equals(addAppointment.getDoctorName()) &&
+                appointment.getPatientName().equals(addAppointment.getPatientName()) &&
+                appointment.getAppointmentDate().equals((addAppointment.getAppointmentDate()))){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    //check if there is already an apppointement made for the sepcified doctor, at the specified date and hour
+    private boolean checkDateTime(Appointment appointment, AddAppointment addAppointment){
+        String doctor = addAppointment.getDoctorName();
+        LocalDate date = addAppointment.getAppointmentDate();
+        LocalTime hour = addAppointment.getAppointmentTime();
+        if (doctor.equals(appointment.getDoctorName()) &&
+                date.equals(appointment.getAppointmentDate())&&
+                hour.equals(appointment.getAppointmentTime())) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
+    //daca nu mai exista in lista data si ora pentru doctorul respectiv
 
 }

@@ -21,8 +21,8 @@ import java.util.Map;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "patient",
-        "doctor",
+        "patientName",
+        "doctorName",
         "appointmentDate",
         "appointmentTime"
 })
@@ -31,15 +31,15 @@ import java.util.Map;
 public class AddAppointment {
 
 
-    @JsonProperty("patient")
-    @JsonPropertyDescription(" The patient ")
+    @JsonProperty("patientName")
+    @JsonPropertyDescription(" The patient name ")
     @NotNull
 
-    private Patient patient;
+    private String patientName;
 
-    @JsonProperty("doctor")
-    @JsonPropertyDescription(" The doctor")
-    private Doctor doctor;
+    @JsonProperty("doctorName")
+    @JsonPropertyDescription(" The doctor name")
+    private String doctorName;
 
     @JsonProperty("appointmentDate")
     @JsonPropertyDescription(" The appointmentDate.")
@@ -67,8 +67,8 @@ public class AddAppointment {
     @Override
     public String toString() {
         return "AddAppointment{" +
-                "patient=" + patient +
-                ", doctor=" + doctor +
+                "patientName=" + patientName +
+                ", doctorName=" + doctorName +
                 ", appointmentDate=" + appointmentDate +
                 ", appointmentTime=" + appointmentTime +
                 ", additionalProperties=" + additionalProperties +
