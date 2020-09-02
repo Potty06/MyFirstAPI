@@ -149,7 +149,7 @@ public class DoctorControllerImpl implements DoctorController{
         AddDoctorResponse addResponse = new AddDoctorResponse();
         addResponse.setdoctorId(doctorIdValue);
         doctorIdValue++;
-        addResponse.setResponseDescription("Customer added");
+        addResponse.setResponseDescription("Doctor added");
         return addResponse;
 
     }

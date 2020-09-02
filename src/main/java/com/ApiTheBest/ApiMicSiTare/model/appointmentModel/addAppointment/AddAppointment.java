@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -34,19 +34,24 @@ public class AddAppointment {
     @JsonProperty("patientName")
     @JsonPropertyDescription(" The patient name ")
     @NotNull
-
+    @Size(min = 5, message = "Invalid name")
+    @Pattern(regexp = "[a-zA-Z ]*")
     private String patientName;
 
     @JsonProperty("doctorName")
     @JsonPropertyDescription(" The doctor name")
+    @Size(min = 5, message = "Invalid name")
+    @Pattern(regexp = "[a-zA-Z ]*")
     private String doctorName;
 
     @JsonProperty("appointmentDate")
     @JsonPropertyDescription(" The appointmentDate.")
+    @FutureOrPresent
     private LocalDate appointmentDate;
 
     @JsonProperty("appointmentTime")
     @JsonPropertyDescription(" The appointmentDate.")
+    @FutureOrPresent
     private LocalTime appointmentTime;
 
     @JsonIgnore
