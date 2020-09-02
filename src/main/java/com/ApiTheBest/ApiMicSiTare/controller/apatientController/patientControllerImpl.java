@@ -1,4 +1,5 @@
-package com.ApiTheBest.ApiMicSiTare.controller.patientController;
+package com.ApiTheBest.ApiMicSiTare.controller.apatientController;
+
 import com.ApiTheBest.ApiMicSiTare.model.errorModel.ErrorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatient;
@@ -6,16 +7,8 @@ import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientReque
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatientResponse;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatient;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientRequest;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -199,6 +192,10 @@ public class patientControllerImpl implements patientController {
         }
 
         return false;
+    }
+
+    public List<Patient> getList(){
+        return patients;
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

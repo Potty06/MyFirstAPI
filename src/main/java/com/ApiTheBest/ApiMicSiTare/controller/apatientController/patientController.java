@@ -1,11 +1,8 @@
-package com.ApiTheBest.ApiMicSiTare.controller.patientController;
+package com.ApiTheBest.ApiMicSiTare.controller.apatientController;
 
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientRequest;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatientResponse;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientRequest;
-import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;

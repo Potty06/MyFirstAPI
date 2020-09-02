@@ -2,6 +2,7 @@ package com.ApiTheBest.ApiMicSiTare.model.doctorModel;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class Doctor {

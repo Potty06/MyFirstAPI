@@ -1,4 +1,4 @@
-package com.ApiTheBest.ApiMicSiTare.controller.doctorController;
+package com.ApiTheBest.ApiMicSiTare.controller.adoctorController;
 
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctor;
@@ -6,7 +6,6 @@ import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorRequest;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctorResponse;
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +29,9 @@ public class DoctorControllerImpl implements DoctorController{
     static {
         doctors.add(new Doctor(1, "Luiza", "0750883434", "blabla", "medic"));
         doctors.add(new Doctor(2, "Luiz", "0750883435", "blabla", "medic"));
-
     }
+
+
     @Override
     public GetDoctorResponse displayDoctor(Optional<Integer> doctorId, Optional<String> doctorName, HttpServletResponse httpServletResponse) {
 
@@ -162,5 +162,9 @@ public class DoctorControllerImpl implements DoctorController{
             return false;
         }
 
+    }
+
+    public List<Doctor> getList(){
+        return doctors;
     }
 }
