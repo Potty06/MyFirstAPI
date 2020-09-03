@@ -19,8 +19,8 @@ import javax.validation.constraints.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "appointmentId",
-        "pacient",
-        "doctor",
+        "patientName",
+        "doctorName",
         "appointmentDate",
         "appointmentDate"
 })
@@ -28,15 +28,21 @@ import javax.validation.constraints.*;
 
 public class UpdateAppointment {
 
-    @JsonProperty("pacient")
-    @JsonPropertyDescription(" The pacient ")
+    @JsonProperty("appointmentId")
+    @JsonPropertyDescription(" Appointment ID ")
     @NotNull
 
-    private Patient patient;
+    private String appointmentId;
 
-    @JsonProperty("doctor")
-    @JsonPropertyDescription(" The doctor")
-    private Doctor doctor;
+    @JsonProperty("patientName")
+    @JsonPropertyDescription(" The patient name ")
+    @NotNull
+
+    private String patientName;
+
+    @JsonProperty("doctorName")
+    @JsonPropertyDescription(" The doctor name")
+    private String doctorName;
 
     @JsonProperty("appointmentDate")
     @JsonPropertyDescription(" The appointmentDate.")
@@ -51,9 +57,9 @@ public class UpdateAppointment {
 
     @Override
     public String toString() {
-        return "UpdatePacient{" +
-                "pacient=" + patient +
-                ", doctor=" + doctor +
+        return "UpdateAppointment{" +
+                "patientName=" + patientName +
+                ", doctorName=" + doctorName +
                 ", appointmentDate=" + appointmentDate +
                 ", appointmentTime=" + appointmentTime +
                 ", additionalProperties=" + additionalProperties +

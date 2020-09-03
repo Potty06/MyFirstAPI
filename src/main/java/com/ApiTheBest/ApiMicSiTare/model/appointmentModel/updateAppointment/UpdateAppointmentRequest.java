@@ -25,20 +25,20 @@ public class UpdateAppointmentRequest {
     @JsonProperty("appointment")
     @JsonPropertyDescription(" the appointment updated into DB")
     @Valid
-    private UpdatePatient appointment;
+    private UpdateAppointment appointment;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 
-    @JsonProperty("pacient")
-    public UpdatePatient getAppointment() {
+    @JsonProperty("appointment")
+    public UpdateAppointment getAppointment() {
         return appointment;
     }
 
 
     @JsonProperty("appointment")
 
-    public void setAppointment(UpdatePatient appointment) {
+    public void setAppointment(UpdateAppointment appointment) {
         this.appointment = appointment;
     }
 

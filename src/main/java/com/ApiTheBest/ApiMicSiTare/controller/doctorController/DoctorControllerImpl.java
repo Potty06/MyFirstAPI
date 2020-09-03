@@ -8,6 +8,7 @@ import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorResponse
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctorResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,44 @@ public class DoctorControllerImpl implements DoctorController{
 
     static{
         doctors = Lists.getDoctors();
+    }
+
+    @Override
+    public GetDoctorResponse displayAllDoctors(HttpServletResponse httpServletResponse) {
+
+        ArrayList<GetDoctor> responseList = new ArrayList<>();
+        for(Doctor doctor: doctors){
+            //if doctor was found, send back response
+                GetDoctor response = new GetDoctor();
+                //preparing response
+                response.setDoctorId(doctor.getDoctorId());
+                response.setDoctorName(doctor.getDoctorName());
+                response.setPhoneNo(doctor.getPhoneNo());
+                response.setContract(doctor.getContract());
+                response.setMedicalSpeciality(doctor.getMedicalSpeciality());
+
+                //add to list
+                log.info("Doctor found and added to the list");
+                log.debug("Doctor found and added " + response.toString());
+                responseList.add(response);
+        }
+
+        if(responseList.isEmpty()){
+            //no customers found
+            httpServletResponse.setStatus(404);
+            GetDoctorResponse response = new GetDoctorResponse();
+            response.setResponseDescription("No entries found");
+            return response;
+        }
+        //if there are customers, send 200
+        else {
+            httpServletResponse.setStatus(200);
+            GetDoctorResponse response = new GetDoctorResponse();
+            response.setGetDoctor(responseList);
+            response.setResponseDescription("Result matching criteria");
+            return response;
+        }
+
     }
 
     @Override

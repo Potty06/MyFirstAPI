@@ -2,6 +2,8 @@ package com.ApiTheBest.ApiMicSiTare.controller.patientController;
 
 import com.ApiTheBest.ApiMicSiTare.controller.Lists;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctor;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.errorModel.ErrorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatient;
@@ -34,6 +36,45 @@ public class patientControllerImpl implements patientController {
 
     static{
         patients = Lists.getPatients();
+    }
+
+    @Override
+    public GetPatientResponse getAllPatients(HttpServletResponse httpServletResponse) {
+
+        ArrayList<GetPatient> responseList = new ArrayList<>();
+
+        for(Patient patient: patients){
+            //if doctor was found, send back response
+            GetPatient response = new GetPatient();
+            //preparing response
+            response.setPatientId(patient.getPatientId());
+            response.setPatientName(patient.getPatientName());
+            response.setPhoneNo(patient.getPhoneNo());
+            response.setEmail(patient.getEmail());
+            response.setAddress(patient.getAddress());
+
+
+            //add to list
+            log.info("Patient found and added to the list");
+            log.debug("Patient found and added " + response.toString());
+            responseList.add(response);
+        }
+
+        if(responseList.isEmpty()){
+            //no customers found
+            httpServletResponse.setStatus(404);
+            GetPatientResponse response = new GetPatientResponse();
+            response.setResponseDescription("No entries found");
+            return response;
+        }
+        //if there are customers, send 200
+        else {
+            httpServletResponse.setStatus(200);
+            GetPatientResponse response = new GetPatientResponse();
+            response.setGetPatient(responseList);
+            response.setResponseDescription("Result matching criteria");
+            return response;
+        }
     }
 
     @Override

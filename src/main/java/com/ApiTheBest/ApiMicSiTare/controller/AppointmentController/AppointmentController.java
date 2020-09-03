@@ -8,10 +8,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.updateAppointment.UpdateAppointmentRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -30,6 +29,9 @@ public interface AppointmentController {
                 @ApiResponse(code = HttpServletResponse.SC_METHOD_NOT_ALLOWED, message = "Method Not Allowed", response = ErrorResponse.class)
         })
 
+        @GetMapping("/displayAll")
+        GetAppointmentResponse displayAllAppointment(HttpServletResponse httpServletResponse);
+
         @GetMapping("/display")
         GetAppointmentResponse displayAppointment(@RequestParam Optional<Integer> appointmentId,
                                                 @RequestParam Optional<LocalDate> appointmentDate,
@@ -38,5 +40,12 @@ public interface AppointmentController {
         @PostMapping("/create")
         AddAppointmentResponse addAppointment(@RequestBody @Valid AddAppointmentRequest addAppointmentRequest,
                                               HttpServletResponse response);
+
+        @PutMapping("/update")
+        ResponseEntity<?> updateAppointment(@RequestBody @Valid UpdateAppointmentRequest updateAppointmentRequest);
+
+        @DeleteMapping("/delete")
+        ResponseEntity<?> deleteAppointment(@RequestParam Optional<Integer> appointmentId,
+                                            HttpServletResponse httpServletResponse);
 
 }
