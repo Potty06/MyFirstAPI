@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Optional;
 
-@Api(value = " display / create ",
+@Api(value = " display / create / update / delete",
         description = "REST API for Appointment")
 public interface AppointmentController {
 

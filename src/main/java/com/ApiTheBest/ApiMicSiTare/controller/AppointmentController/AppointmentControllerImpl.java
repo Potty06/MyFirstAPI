@@ -302,7 +302,7 @@ public class AppointmentControllerImpl implements AppointmentController {
 
         //if the appointment is identical
         for (Appointment appointment : appointments) {
-            if(updateAppointment.getAppointmentId().equals(appointment.getAppointmentId())) {
+            if (updateAppointment.getAppointmentId().equals(appointment.getAppointmentId())) {
                 if (checkUpdateAppointment(appointment, updateAppointment)) {
                     log.info("Appointment already updated!");
                     log.trace("Appointment with doctor name " + updateAppointment.getDoctorName() + ", " + "with Patient name: " +
@@ -310,23 +310,23 @@ public class AppointmentControllerImpl implements AppointmentController {
                     UpdateAppointmentResponse response = new UpdateAppointmentResponse();
                     response.setResponseDescription("Request identical with entry");
                     return new ResponseEntity<UpdateAppointmentResponse>(response, HttpStatus.CONFLICT);
-                }
-            }else{
-                //if not, update him
-                log.info("Called /appointment/create");
-                log.trace("Called /appointment/create with doctor name " + updateAppointment.getDoctorName() + ", " + "with Patient name: " +
-                        updateAppointment.getPatientName() + ", " + "with Date : " + updateAppointment.getAppointmentDate());
-                log.debug("Called /appointment/create at " + LocalDate.now());
-                appointment.setDoctorName(updateAppointment.getDoctorName());
-                appointment.setPatientName(updateAppointment.getPatientName());
-                appointment.setAppointmentDate(updateAppointment.getAppointmentDate());
-                appointment.setAppointmentTime(updateAppointment.getAppointmentTime());
+                }else{
+                    //if not, update him
+                    log.info("Called /appointment/create");
+                    log.trace("Called /appointment/create with doctor name " + updateAppointment.getDoctorName() + ", " + "with Patient name: " +
+                            updateAppointment.getPatientName() + ", " + "with Date : " + updateAppointment.getAppointmentDate());
+                    log.debug("Called /appointment/create at " + LocalDate.now());
+                    appointment.setDoctorName(updateAppointment.getDoctorName());
+                    appointment.setPatientName(updateAppointment.getPatientName());
+                    appointment.setAppointmentDate(updateAppointment.getAppointmentDate());
+                    appointment.setAppointmentTime(updateAppointment.getAppointmentTime());
 
-                ErrorResponse response = new ErrorResponse();
-                response.setErrorDescription("Item updated");
-                log.info("Appointment update successful");
-                log.debug("Appointment found and updated :" + response.toString());
-                return new ResponseEntity<ErrorResponse>(response,HttpStatus.OK);
+                    ErrorResponse response = new ErrorResponse();
+                    response.setErrorDescription("Successfully update!");
+                    log.info("Appointment update successful");
+                    log.debug("Appointment found and updated :" + response.toString());
+                    return new ResponseEntity<ErrorResponse>(response, HttpStatus.OK);
+                }
             }
         }
 

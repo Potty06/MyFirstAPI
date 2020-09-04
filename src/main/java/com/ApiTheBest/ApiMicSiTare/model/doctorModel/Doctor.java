@@ -17,13 +17,6 @@ public class Doctor {
 
     private String medicalSpeciality;
 
-//    public Doctor(Integer doctorId, String doctorName, String phoneNo, String contract, String medicalSpeciality) {
-//        this.doctorId = doctorId;
-//        this.doctorName = doctorName;
-//        this.phoneNo = phoneNo;
-//        this.contract = contract;
-//        this.medicalSpeciality = medicalSpeciality;
-//    }
 
     public Integer getDoctorId() {
         return doctorId;

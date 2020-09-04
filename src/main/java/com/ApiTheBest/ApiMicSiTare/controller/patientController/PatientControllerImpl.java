@@ -1,10 +1,6 @@
 package com.ApiTheBest.ApiMicSiTare.controller.patientController;
 
 import com.ApiTheBest.ApiMicSiTare.controller.Lists;
-import com.ApiTheBest.ApiMicSiTare.model.doctorModel.Doctor;
-import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctor;
-import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctorResponse;
-import com.ApiTheBest.ApiMicSiTare.model.errorModel.ErrorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientRequest;
@@ -16,10 +12,6 @@ import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatien
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,9 +24,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/patient")
-public class patientControllerImpl implements patientController {
+public class PatientControllerImpl implements PatientController {
 
-    private Logger log = LoggerFactory.getLogger(patientControllerImpl.class);
+    private Logger log = LoggerFactory.getLogger(PatientControllerImpl.class);
 
     private static List<Patient> patients = new ArrayList<>();
 
@@ -247,12 +239,6 @@ public class patientControllerImpl implements patientController {
                     patient.setAddress(updatePatient.getAddress());
                     patient.setEmail(updatePatient.getEmail());
                     patient.setPhoneNo(updatePatient.getPhoneNo());
-
-//                    UpdateCustomerResponse response = new UpdateCustomerResponse();
-//                    response.setResponseDescription("Item updated");
-//                    log.info("Customer updated successful");
-//                    log.debug("Customer found and updated : " + response.toString());
-//                    return new ResponseEntity<>(response, HttpStatus.OK);
 
                     UpdatePatientResponse response = new UpdatePatientResponse();
                     response.setResponseDescription("Item updated");

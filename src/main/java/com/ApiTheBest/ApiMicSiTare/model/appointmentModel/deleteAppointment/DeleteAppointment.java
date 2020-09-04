@@ -22,15 +22,15 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "appointmentId",
-        "pacient",
+        "patient",
         "doctor",
         "appointmentDate",
         "appointmentTime"
 })
 
 public class DeleteAppointment {
-    @JsonProperty("pacient")
-    @JsonPropertyDescription(" The pacient ")
+    @JsonProperty("patient")
+    @JsonPropertyDescription(" The patient ")
     @NotNull
 
     private Patient patient;

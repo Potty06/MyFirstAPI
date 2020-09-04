@@ -32,7 +32,7 @@ public class UpdateAppointment {
     @JsonPropertyDescription(" Appointment ID ")
     @NotNull
 
-    private String appointmentId;
+    private Integer appointmentId;
 
     @JsonProperty("patientName")
     @JsonPropertyDescription(" The patient name ")

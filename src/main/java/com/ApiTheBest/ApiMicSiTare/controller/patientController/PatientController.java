@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Api(value = "display / create",
         description = "REST API for Patient")
-public interface patientController {
+public interface PatientController {
 
     @GetMapping("/displayAll")
     GetPatientResponse getAllPatients(HttpServletResponse httpServletResponse);

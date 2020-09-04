@@ -27,7 +27,7 @@ public class SwagggerConfig {
 
     private ApiInfo apiEndpointsInfo(){
         return new ApiInfoBuilder().title("Private clinic API Example")
-                .description("Get/Add/Update appointments for patients")
+                .description("Get/Add/Update/Delete appointments for patients")
                 .version("1.0.0")
                 .build();
     }

@@ -223,11 +223,6 @@ public class DoctorControllerImpl implements DoctorController{
                     doctor.setContract(updateDoctor.getContract());
                     doctor.setMedicalSpeciality(updateDoctor.getMedicalSpeciality());
                     doctor.setPhoneNo(updateDoctor.getPhoneNo());
-//                    UpdateCustomerResponse response = new UpdateCustomerResponse();
-//                    response.setResponseDescription("Item updated");
-//                    log.info("Customer updated successful");
-//                    log.debug("Customer found and updated : " + response.toString());
-//                    return new ResponseEntity<>(response, HttpStatus.OK);
 
                     UpdateDoctorResponse response = new UpdateDoctorResponse();
                     response.setResponseDescription("Item updated");
