@@ -7,6 +7,12 @@ import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorRequest;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.addDoctor.AddDoctorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctor;
 import com.ApiTheBest.ApiMicSiTare.model.doctorModel.getDoctor.GetDoctorResponse;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.updateDoctor.UpdateDoctor;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.updateDoctor.UpdateDoctorRequest;
+import com.ApiTheBest.ApiMicSiTare.model.doctorModel.updateDoctor.UpdateDoctorResponse;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.Patient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -178,7 +184,7 @@ public class DoctorControllerImpl implements DoctorController{
 
         doctor.setDoctorName(addDoctor.getDoctorName());
         doctor.setContract(addDoctor.getContract());
-        doctor.setMedicalSpeciality(addDoctor.getMedicSpeciality());
+        doctor.setMedicalSpeciality(addDoctor.getMedicalSpeciality());
         doctor.setPhoneNo(addDoctor.getPhoneNo());
 
         doctors.add(doctor);
@@ -193,6 +199,52 @@ public class DoctorControllerImpl implements DoctorController{
 
     }
 
+    @Override
+    public UpdateDoctorResponse updateDoctor(@Valid UpdateDoctorRequest updateDoctorRequest) {
+
+        //find patient in the list
+        log.info("Called /updateDoctor");
+        log.trace("Called /updateDoctor with request: " + updateDoctorRequest.getDoctor());
+        log.debug("Called /updatePatient at " + LocalDate.now());
+        UpdateDoctor updateDoctor = updateDoctorRequest.getDoctor();
+        //if found, make sure that the request is not identical to the entry
+        for( Doctor doctor: doctors ){
+            if(updateDoctor.getDoctorId().equals(doctor.getDoctorId())) {
+                if (checkUpdate(updateDoctor, doctor)) {
+                    //if identical, return error message
+                    log.info("Same Request");
+                    log.trace("Patient = " + updateDoctor.getDoctorName());
+                    UpdateDoctorResponse response = new UpdateDoctorResponse();
+                    response.setResponseDescription("Request identical with entry");
+                    return response;
+                } else {
+                    //if not identical, make update
+                    doctor.setDoctorName(updateDoctor.getDoctorName());
+                    doctor.setContract(updateDoctor.getContract());
+                    doctor.setMedicalSpeciality(updateDoctor.getMedicalSpeciality());
+                    doctor.setPhoneNo(updateDoctor.getPhoneNo());
+//                    UpdateCustomerResponse response = new UpdateCustomerResponse();
+//                    response.setResponseDescription("Item updated");
+//                    log.info("Customer updated successful");
+//                    log.debug("Customer found and updated : " + response.toString());
+//                    return new ResponseEntity<>(response, HttpStatus.OK);
+
+                    UpdateDoctorResponse response = new UpdateDoctorResponse();
+                    response.setResponseDescription("Item updated");
+                    log.info("Doctor updated successful");
+                    log.debug("Patient found and updated : " + response.toString());
+                    return response;
+                }
+            }
+        }
+        //in case customer was not found, return 404
+        UpdateDoctorResponse response = new UpdateDoctorResponse();
+        response.setResponseDescription("Customer with id " + updateDoctor.getDoctorId() + " was not found!");
+        log.info("No customers found");
+        log.debug("No customers found with customerDates: " + updateDoctorRequest.getDoctor());
+        return response;
+    }
+
     private boolean checkAddDoctor(Doctor doctor, AddDoctor addDoctor){
         if(doctor.getDoctorName().equals(addDoctor.getDoctorName()) &&
                 doctor.getPhoneNo().equals(addDoctor.getPhoneNo())){
@@ -200,6 +252,14 @@ public class DoctorControllerImpl implements DoctorController{
         } else {
             return false;
         }
+    }
+
+    private boolean checkUpdate(UpdateDoctor updateDoctor, Doctor doctor){
+        if(updateDoctor.getDoctorName().equals(doctor.getDoctorName())&&
+                updateDoctor.getPhoneNo().equals(doctor.getPhoneNo())){
+            return true;
+        }else
+            return false;
 
     }
 

@@ -55,10 +55,10 @@ public class AddDoctor {
     /**
      * Medic Speciality.
      */
-    @JsonProperty("medicSpeciality")
+    @JsonProperty("medicalSpeciality")
     @JsonPropertyDescription(" Medic Speciality.")
     @NotNull
-    private String medicSpeciality;
+    private String medicalSpeciality;
 
 
 

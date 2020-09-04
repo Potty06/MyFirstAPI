@@ -1,9 +1,12 @@
 package com.ApiTheBest.ApiMicSiTare.controller.patientController;
 
+import com.ApiTheBest.ApiMicSiTare.model.appointmentModel.updateAppointment.UpdateAppointment;
 import com.ApiTheBest.ApiMicSiTare.model.errorModel.ErrorResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientRequest;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatientResponse;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientRequest;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,6 +21,9 @@ import java.util.Optional;
 @Api(value = "display / create",
         description = "REST API for Patient")
 public interface patientController {
+
+    @GetMapping("/displayAll")
+    GetPatientResponse getAllPatients(HttpServletResponse httpServletResponse);
 
     @ApiOperation(value = "Get Customer", nickname = "getCustomer")
     @ApiResponses(value = {
@@ -35,5 +41,8 @@ public interface patientController {
     @PostMapping("/create")
     AddPatientResponse addPatient(@RequestBody @Valid AddPatientRequest addPatientRequest,
                                    HttpServletResponse response);
+
+    @PutMapping("/update")
+    UpdatePatientResponse updatePatient(@RequestBody @Valid UpdatePatientRequest updatePatientRequest);
 }
 

@@ -11,14 +11,20 @@ import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientReque
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.addPatient.AddPatientResponse;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatient;
 import com.ApiTheBest.ApiMicSiTare.model.patientModel.getPatient.GetPatientResponse;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatient;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientRequest;
+import com.ApiTheBest.ApiMicSiTare.model.patientModel.updatePatient.UpdatePatientResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -218,6 +224,53 @@ public class patientControllerImpl implements patientController {
 
     }
 
+    @Override
+    public UpdatePatientResponse updatePatient(@Valid UpdatePatientRequest updatePatientRequest) {
+        //find patient in the list
+        log.info("Called /updatePatient");
+        log.trace("Called /updatePatient with request: " + updatePatientRequest.getPatient());
+        log.debug("Called /updatePatient at " + LocalDate.now());
+        UpdatePatient updatePatient = updatePatientRequest.getPatient();
+        //if found, make sure that the request is not identical to the entry
+        for( Patient patient: patients ){
+            if(updatePatient.getPatientId().equals(patient.getPatientId())) {
+                if (checkUpdate(updatePatient, patient)) {
+                    //if identical, return error message
+                    log.info("Same Request");
+                    log.trace("Patient = " + updatePatient.getPatientName());
+                    UpdatePatientResponse response = new UpdatePatientResponse();
+                    response.setResponseDescription("Request identical with entry");
+                    return response;
+                } else {
+                    //if not identical, make update
+                    patient.setPatientName(updatePatient.getPatientName());
+                    patient.setAddress(updatePatient.getAddress());
+                    patient.setEmail(updatePatient.getEmail());
+                    patient.setPhoneNo(updatePatient.getPhoneNo());
+
+//                    UpdateCustomerResponse response = new UpdateCustomerResponse();
+//                    response.setResponseDescription("Item updated");
+//                    log.info("Customer updated successful");
+//                    log.debug("Customer found and updated : " + response.toString());
+//                    return new ResponseEntity<>(response, HttpStatus.OK);
+
+                    UpdatePatientResponse response = new UpdatePatientResponse();
+                    response.setResponseDescription("Item updated");
+                    log.info("Patient updated successful");
+                    log.debug("Patient found and updated : " + response.toString());
+                    return response;
+                }
+            }
+        }
+        //Lists.setPatients(patients);
+        //in case customer was not found, return 404
+        UpdatePatientResponse response = new UpdatePatientResponse();
+        response.setResponseDescription("Customer with id" + updatePatient.getPatientId() + "was not found!");
+        log.info("No customers found");
+        log.debug("No customers found with customerDates: " + updatePatientRequest.getPatient());
+        return response;
+    }
+
     private boolean checkAddPatient(AddPatient addPatient, Patient patient) {
 
         if (addPatient.getPatientName()!=null && patient.getPatientName()!=null){
@@ -229,16 +282,13 @@ public class patientControllerImpl implements patientController {
         return false;
     }
 
-    public List<Patient> getList(){
-        return patients;
+    private boolean checkUpdate(UpdatePatient updatePatient, Patient patient){
+        if( updatePatient.getPatientId().equals(patient.getPatientId()) &
+                updatePatient.getPatientName().equals(patient.getPatientName())){
+            return true;
+        }else
+            return false;
+
     }
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ErrorResponse handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception,
-                                                                      HttpServletResponse servletResponse) {
-        ErrorResponse response = new ErrorResponse();
-        response.setErrorDescription(exception.getMessage());
-        servletResponse.setStatus(405);
-        return response;
-    }
 }

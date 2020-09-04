@@ -32,10 +32,16 @@ public class UpdateDoctor {
     /**
      * Name of the doctor.
      */
+    @JsonProperty("doctorId")
+    @JsonPropertyDescription(" Id of the doctor")
+    private Integer doctorId;
+    /**
+     * Name of the doctor.
+     */
     @JsonProperty("doctorName")
-    @JsonPropertyDescription(" Name of the customer.")
+    @JsonPropertyDescription(" Name of the doctor.")
     @NotNull
-    @Size(min = 10, message = "Invalid name")
+    @Size(min = 4, message = "Invalid name")
     private String doctorName;
     /**
      * The phone number of the doctor.
@@ -57,11 +63,11 @@ public class UpdateDoctor {
     /**
      * Medic Speciality.
      */
-    @JsonProperty("medicSpeciality")
+    @JsonProperty("medicalSpeciality")
     @JsonPropertyDescription(" Medic Speciality.")
     @NotNull
 // validari de facut
-    private String medicSpeciality;
+    private String medicalSpeciality;
 
 
     @JsonIgnore
@@ -73,7 +79,7 @@ public class UpdateDoctor {
                 "doctorName='" + doctorName + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
                 ", contract='" + contract + '\'' +
-                ", medicSpeciality='" + medicSpeciality + '\'' +
+                ", medicalSpeciality='" + medicalSpeciality + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }
